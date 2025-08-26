@@ -43,6 +43,7 @@ function verifyMetaSignature(req) {
   const expected = "sha256=" + crypto.createHmac("sha256", WA_APP_SECRET).update(body).digest("hex");
   try {
     return crypto.timingSafeEqual(Buffer.from(sig), Buffer.from(expected));
+    console.log('WEBHOOK VERIFIED');
   } catch {
     return false;
   }
@@ -96,6 +97,7 @@ app.get("/wa/webhook", (req, res) => {
 
   if (mode === "subscribe" && token === WA_VERIFY_TOKEN) {
     log.info("Meta webhook verified.");
+    console.log('Meta webhook verified.');
     return res.status(200).send(challenge);
   }
   log.warn("Meta webhook verification failed.");
@@ -134,6 +136,7 @@ app.post("/wa/webhook", async (req, res) => {
       log.error("Forward to Camunda failed:", r.status, t);
     } else {
       log.info("Forwarded to Camunda:", inbound.phone, inbound.text);
+      console.log('Forwarded to Camunda:', inbound.phone, inbound.text);
     }
   } catch (e) {
     log.error("Error forwarding to Camunda:", e);
