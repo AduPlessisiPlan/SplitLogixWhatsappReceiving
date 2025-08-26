@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: wa-camunda-relay
+    env: node
+    plan: free
+    buildCommand: "npm install"
+    startCommand: "npm start"
+    runtime: node
+    autoDeploy: true
+    envVars:
+      - key: WA_VERIFY_TOKEN
+        value: ThisIsATest         # choose your own
+      - key: WA_APP_SECRET
+        sync: false                         # set in dashboard
+      - key: CAMUNDA_WEBHOOK_URL
+        sync: false                         # set in dashboard
+      - key: CAMUNDA_BASIC_USER
+        value: webhook
+      - key: CAMUNDA_BASIC_PASS
+        sync: false                         # set in dashboard
+      - key: LOG_LEVEL
+        value: info
