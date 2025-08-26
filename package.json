@@ -1,0 +1,14 @@
+{
+  "name": "wa-camunda-relay",
+  "version": "1.0.0",
+  "description": "WhatsApp → Camunda Webhook Start Event relay (Meta verification + signature + Basic auth)",
+  "main": "server.js",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
